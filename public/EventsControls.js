@@ -226,7 +226,7 @@ EventsControls = function ( camera, domElement ) {
 			
 			_this._mouse.x = ( ( x ) / _this.container.width * 2 - 0.5 ) * 2;
 			_this._mouse.y = (- ( ( y ) / _this.container.height ) * 2  + 0.5) * 2 ;
-			console.log(_this._mouse);
+			// console.log(_this._mouse);
 			onContainerMouseMove();
 			if ( _mouseMoveFlag ) _this.mouseMove();
 		}

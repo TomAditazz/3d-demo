@@ -103,12 +103,12 @@ var ShowOSM = React.createClass({
         scene.add( checkerboard );
         
         controls = new THREE.OrbitControls( camera, renderer.domElement );
-        controls.enableZoom = true;
-        controls.enableDamping = false;
-        controls.rotateSpeed = 1;
-        controls.zoomSpeed = 1.2;
-        controls.minPolarAngle = Math.PI / 3;
-        controls.maxPolarAngle = Math.PI / 3;
+        // controls.enableZoom = true;
+        // // controls.enableDamping = true;
+        // controls.rotateSpeed = 1;
+        // controls.zoomSpeed = 1.2;
+        // controls.minPolarAngle = Math.PI / 3;
+        // controls.maxPolarAngle = Math.PI / 3;
         //
         EventsControls2 = new EventsControls(camera, renderer.domElement);
         EventsControls2.map = checkerboard;
@@ -132,6 +132,16 @@ var ShowOSM = React.createClass({
             // this.focused.position.y = this.previous.y;
 
         });
+        EventsControls2.attachEvent( 'onclick', function () {
+
+            controls.enabled = false;
+
+        });  
+        EventsControls2.attachEvent( 'mouseUp', function () {
+
+            controls.enabled = true;
+
+        });  
         console.log(EventsControls2);
         var scale = new THREE.Vector3(25, 25, 25);
         EventsControls2.scale.copy(scale);
@@ -148,32 +158,32 @@ var ShowOSM = React.createClass({
           var object = collada.scene;
           //object.scale.set( 0.025, 0.025, 0.025 );
           object.scale.set(1 / scale.x, 1 / scale.y, 1 / scale.z);
-          // object.position.set( 2.176, 0, 2.438 );
-          object.position.set(0, 0, 0);
+          object.position.set( 2.176, 0, 2.438 );
+          // object.position.set(0, 0, 0);
           object.updateMatrix();
           console.log(object);
           scene.add( object );
           EventsControls2.attach(object);
         } );
-        // loader1.load( 'https://aditazz-rls.s3-us-west-1.amazonaws.com/models/PF2006.dae', function ( collada ) {
-        loader1.load( 'https://aditazz-rls.s3-us-west-1.amazonaws.com/models/PF2609.dae', function ( collada ) {
+        loader1.load( 'https://aditazz-rls.s3-us-west-1.amazonaws.com/models/PF2006.dae', function ( collada ) {
+        // loader1.load( 'https://aditazz-rls.s3-us-west-1.amazonaws.com/models/PF2609.dae', function ( collada ) {
           var object1 = collada.scene;
           object1.scale.set(1 / scale.x, 1 / scale.y, 1 / scale.z);
-          // object1.position.set( 0.724, 0.356, 2.438 );
-          object1.position.set( 2.176, 0, 2.438 );
+          object1.position.set( 0.724, 0.356, 2.438 );
+          // object1.position.set( 2.176, 0, 2.438 );
           object1.updateMatrix();
           console.log(object1);
           scene.add( object1 );
           EventsControls2.attach(object1);
         } );
-        // loader2.load( 'https://aditazz-rls.s3-us-west-1.amazonaws.com/models/DoorLHpush.dae', function ( collada ) {
-        //   var object2 = collada.scene;
-        //   object2.scale.set( 0.025, 0.025, 0.025 );
-        //   object2.position.set( 1, 0, 0 );
-        //   object2.updateMatrix();
-        //   scene.add( object2 );
-        //   EventsControls2.attach(object2);
-        // } );
+        loader2.load( 'https://aditazz-rls.s3-us-west-1.amazonaws.com/models/DoorLHpush.dae', function ( collada ) {
+          var object2 = collada.scene;
+          object2.scale.set( 0.025, 0.025, 0.025 );
+          object2.position.set( 1, 0, 0 );
+          object2.updateMatrix();
+          scene.add( object2 );
+          EventsControls2.attach(object2);
+        } );
         
         //
         var gridHelper = new THREE.GridHelper( 10, 10 );
